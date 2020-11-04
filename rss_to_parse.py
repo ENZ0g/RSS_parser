@@ -8,7 +8,7 @@ class Lenta(RssParser):
         soup = self.get_soup(url)
         if soup:
             return {'title': self.get_title(soup.find('h1')),
-                    'image': self.get_img_src(soup.find('div', attrs={'class': 'b-topic__title-image'}).find('img')),
+                    'image': self.get_img_src(soup.find('div', attrs={'itemprop': 'articleBody'}).find('img')),
                     'content': self.get_p_list(soup.find('div', attrs={'itemprop': 'articleBody'}).find_all('p'))}
 
 

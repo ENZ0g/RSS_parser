@@ -29,7 +29,8 @@ class RssParser:
 
     def news(self, limit=None):
         if not validators.url(self.url):
-            return f'NEWS: Not valid URL: {self.url}'
+            print(f'NEWS: {self.__class__.__name__}: Not valid URL: {self.url}')
+            return -1
 
         feed = feedparser.parse(self.url, agent=self.user_agent)
         if feed.status == 200 or feed.status == 302:
@@ -38,11 +39,16 @@ class RssParser:
             self.url = feed.href
             return self.news(limit)
         elif feed.status == 410:
-            return f'NEWS: Permanently deleted: {self.url}'
+            print(f'NEWS: Permanently deleted: {self.url}')
+            return -1
         else:
-            return f'NEWS: Something wrong with: {self.url}\nHttp status - {feed.status}'
+            print(f'NEWS: Something wrong with: {self.url}\nHttp status - {feed.status}')
+            return -1
 
     def get_soup(self, url):
+        if not validators.url(url):
+            print(f'GRUB: {self.__class__.__name__}: Not valid URL: {url}')
+            return
         html = requests.get(url, headers={'user-agent': self.user_agent})
         if html.status_code == 200:
             return BeautifulSoup(html.content, "html.parser")
