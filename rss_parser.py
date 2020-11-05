@@ -73,6 +73,6 @@ class RssParser:
                "\tdef grub(self, url):\n"\
                "\t\tsoup = self.get_soup(url)\n"\
                "\t\tif soup:\n"\
-               "\t\t\treturn {'title': itself.get_title(insert bs4 title tag here),\n"\
+               "\t\t\treturn {'title': self.get_title(insert bs4 title tag here),\n"\
                "\t\t\t\t\t'image': self.get_img_src(insert bs4 img tag here),\n"\
                "\t\t\t\t\t'content': self.get_p_list(insert list of bs4 p tags here)}"

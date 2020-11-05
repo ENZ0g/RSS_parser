@@ -39,7 +39,7 @@ print(example.news(5))  # вернет 5 последних новостей
 def grub(self, url):
     tsoup = self.get_soup(url)
     if soup:
-        return {'title': itself.get_title(insert bs4 title tag here),
+        return {'title': self.get_title(insert bs4 title tag here),
                 'image': self.get_img_src(insert bs4 img tag here),
                 'content': self.get_p_list(insert list of bs4 p tags here)}
 ```
